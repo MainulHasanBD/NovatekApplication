@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Novatek.Models.Entities.Department>
+@{
+    ViewData["Title"] = "Department List";
+}
+
+<div class="card">
+    <h5 class="card-header">Department Information</h5>
+
+    <div class="card-body">
+        <div class="d-flex justify-content-end align-items-center">
+            <a class="btn btn-outline-primary" asp-action="Create" asp-controller="Department"><i class='bx bx-plus-circle fs-4'></i></a>
+        </div>
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered mt-2">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Department Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(x => item.Id)</td>
+                            <td>@Html.DisplayFor(x => item.DepartmentName)</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button"
+                                            class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-action="Update" asp-controller="Department" asp-route-id="@item.Id"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" asp-action="Delete" asp-controller="Department" asp-route-id="@item.Id"><i class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

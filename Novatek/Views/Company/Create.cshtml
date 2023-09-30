@@ -1,0 +1,90 @@
+﻿@model Novatek.Models.ViewModels.CompanyVM
+@{
+    ViewData["Title"] = "Create New Company";
+}
+
+
+<div class="row">
+
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Add New Company</h5>
+            </div>
+            <div class="card-body">
+                <form id="frmCreate"
+                      asp-action="Create"
+                      asp-controller="Company"
+                      data-ajax-method="Post"
+                      data-ajax="true"
+                      data-ajax-mode="replace"
+                      data-ajax-update="#panel"
+                      data-ajax-success="success">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="CompanyName">@Html.DisplayNameFor(x => x.CompanyName)</label>
+                        <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name" asp-for="CompanyName" />
+                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="CompanyAddress">@Html.DisplayNameFor(x => x.CompanyAddress)</label>
+                        <input type="text" class="form-control" id="companyAddress" placeholder="Enter Company Address" asp-for="CompanyAddress" />
+                        <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                    </div>
+                 
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="City">@Html.DisplayNameFor(x => x.City)</label>
+                        <input type="text" class="form-control" id="city" placeholder="Enter City Name" asp-for="City" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Country">@Html.DisplayNameFor(x => x.Country)</label>
+                        <input type="text" class="form-control" id="country" placeholder="Enter Country Name" asp-for="Country" />
+                        <span asp-validation-for="Country" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Phone">@Html.DisplayNameFor(x => x.Phone)</label>
+                        <input type="text" id="phone" class="form-control phone-mask" placeholder="880 799 8941" asp-for="Phone" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="FoundedDate">@Html.DisplayNameFor(x => x.FoundedDate)</label>
+                        <input type="date" class="form-control" id="foundedDate" asp-for="FoundedDate" />
+                        <span asp-validation-for="FoundedDate" class="text-danger"></span>
+                    </div>
+                    <div class="mb-4">
+                        <div class="mb-2">
+                            <button type="submit" class="btn btn-primary"><i class='bx bx-save'></i> Save Now</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                      <div id="panel"></div>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/ajax/dist/jquery.unobtrusive-ajax.js"></script>
+
+    <script type="text/javascript">
+        $("#frmCreate").attr("enctype", "multipart/form-data")
+        function success() {
+            $("#frmCreate").trigger('reset')
+        }
+    </script>
+}
